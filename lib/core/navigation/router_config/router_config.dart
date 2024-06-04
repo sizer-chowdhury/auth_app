@@ -1,5 +1,5 @@
 import 'package:authentication_app/core/navigation/routes/routes_name.dart';
-import 'package:authentication_app/feature/login/presentation/views/login_page.dart';
+import 'package:authentication_app/feature/login/presentation/pages/login_page.dart';
 import 'package:authentication_app/feature/signup/presentation/views/sign_up_page.dart';
 import 'package:authentication_app/feature/home_page/presentation/views/home_page.dart';
 import 'package:flutter/material.dart';
