@@ -1,6 +1,7 @@
 import 'package:authentication_app/core/gen/assets.gen.dart';
 import 'package:authentication_app/core/navigation/routes/routes_name.dart';
 import 'package:authentication_app/core/gen/fonts.gen.dart';
+import 'package:authentication_app/feature/home_page/controller/home_page_controller.dart';
 import 'package:authentication_app/feature/login/presentation/widgets/circular_tile.dart';
 import 'package:authentication_app/core/widgets/password_filed.dart';
 import 'package:authentication_app/core/widgets/title_underline.dart';
@@ -67,7 +68,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
             Stack(
               children: [
                 Text(
-                  'Log In to Authyy',
+                  'Log In to Authy',
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
                 const Underline(right: 77),
@@ -190,18 +191,14 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                       ),
                     ],
                   ),
-                  const SizedBox(
-                    width: 30,
-                  ),
-                  Expanded(
-                    child: TextButton(
-                      onPressed: () {
-                        context.go("/forgetPassword");
-                      },
-                      child: Text(
-                        'Forget Password?',
-                        style: Theme.of(context).textTheme.headlineLarge,
-                      ),
+                  const Spacer(),
+                  TextButton(
+                    onPressed: () {
+                      context.go("/forgetPassword");
+                    },
+                    child: Text(
+                      'Forget Password?',
+                      style: Theme.of(context).textTheme.headlineLarge,
                     ),
                   ),
                 ],
