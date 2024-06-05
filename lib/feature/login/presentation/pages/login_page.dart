@@ -58,7 +58,6 @@ class _LoginPageState extends ConsumerState<LoginPage> {
         _buildShowDialog(context);
       }
     });
-
     return Scaffold(
       appBar: AppBar(),
       body: SafeArea(
@@ -175,10 +174,16 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                 children: [
                   Row(
                     children: [
-                      Checkbox(
-                        value: false,
-                        onChanged: (newValue) {},
-                      ),
+                     SizedBox(
+                       height: 15,
+                       width: 15,
+                       child:  Checkbox(
+                         value: false,
+                         onChanged: (newValue) {},
+
+                       ),
+                     ),
+                      const SizedBox(width: 7),
                       Text(
                         'Remember Me',
                         style: Theme.of(context).textTheme.headlineLarge,
