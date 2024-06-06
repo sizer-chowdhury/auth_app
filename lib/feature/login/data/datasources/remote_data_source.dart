@@ -25,11 +25,7 @@ class LoginRemoteDataSource {
           'FCMToken': 'Token1',
         },
       );
-      if (response.statusCode != 201) {
-        throw Exception('Something went wrong');
-      } else {
-        return LoginModel.fromJson(jsonDecode(response.body));
-      }
+      return LoginModel.fromJson(jsonDecode(response.body));
     } catch (error) {
       throw Exception('error');
     }
