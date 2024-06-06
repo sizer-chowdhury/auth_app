@@ -1,16 +1,29 @@
 import 'dart:async';
+import 'package:authentication_app/feature/login/data/repositories/login_repository_imp.dart';
 import 'package:authentication_app/feature/login/domain/entities/login_entity.dart';
-import 'package:authentication_app/feature/login/domain/repositories/loginn_repository.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-class LoginUseCase {
-  final LoginRepository loginRepository;
+part 'user_login.g.dart';
 
-  LoginUseCase(this.loginRepository);
+@riverpod
+LoginUsecase loginUsecase(LoginUsecaseRef ref) {
+  // ignore: avoid_manual_providers_as_generated_provider_dependency
+  final loginImp = ref.read(loginRepostoryImpProvider);
+  return LoginUsecase(loginImp: loginImp);
+}
+
+class LoginUsecase {
+  final LoginRepositoryImp loginImp;
+
+  LoginUsecase({required this.loginImp});
 
   FutureOr<LoginEntity?> userLogin({
     required String email,
     required String password,
   }) async {
-    return await loginRepository.getUserLogin(email: email, password: password);
+    return await loginImp.getUserLogin(
+      email: email,
+      password: password,
+    );
   }
 }

@@ -56,92 +56,89 @@ class _ForgetPasswordPageState extends ConsumerState<ForgetPasswordPage> {
           },
         ),
       ),
-      body: SingleChildScrollView(
-        child: SafeArea(
-          child: Center(
-            child: Column(
+      body: SafeArea(
+        child: Column(
+          children: [
+            Stack(
               children: [
-                Stack(
-                  children: [
-                    Text(
-                      'Forgot Password',
-                      style: Theme.of(context).textTheme.titleLarge,
-                    ),
-                    const Underline(right: 77),
-                  ],
-                ),
-                const SizedBox(height: 16),
                 Text(
-                  'Enter your email address. We will send a code',
-                  style: Theme.of(context).textTheme.titleMedium,
+                  'Forgot Password',
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
-                Text(
-                  'to verify your identity',
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-                const SizedBox(height: 70),
-                Padding(
-                  padding: const EdgeInsets.only(left: 24, right: 24),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Your email',
-                        style: Theme.of(context).textTheme.headlineLarge,
-                      ),
-                      TextField(
-                        decoration: const InputDecoration(
-                          hintText: 'Enter your email',
-                        ),
-                        controller: email,
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 347),
-                Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.only(left: 24, right: 24),
-                  child: ElevatedButton(
-                    onPressed: (enableButtonNotifier)
-                        ? () => ref
-                            .read(forgetPasswordProvider.notifier)
-                            .otpConfirmation(
-                              email: email.text.toString(),
-                            )
-                        : null,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: (enableButtonNotifier)
-                          ? Theme.of(context).colorScheme.primary
-                          : Theme.of(context).colorScheme.secondary,
-                      minimumSize: const Size(double.infinity, 50),
-                    ),
-                    child: loginState.isLoading
-                        ? const CircularProgressIndicator(
-                            backgroundColor: Colors.white,
-                          )
-                        : Text(
-                            'Submit',
-                            style: TextStyle(
-                              color: (enableButtonNotifier)
-                                  ? Theme.of(context).colorScheme.surface
-                                  : Theme.of(context).colorScheme.tertiary,
-                            ),
-                          ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    GoRouter.of(context).pushNamed(Routes.login);
-                  },
-                  child: Text(
-                    'Remember your password?Log In',
-                    style: Theme.of(context).textTheme.headlineLarge,
-                  ),
-                ),
+                const Underline(right: 77),
               ],
             ),
-          ),
+            const SizedBox(height: 16),
+            Text(
+              'Enter your email address. We will send a code',
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            Text(
+              'to verify your identity',
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            const SizedBox(height: 70),
+            Padding(
+              padding: const EdgeInsets.only(left: 24, right: 24),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Your email',
+                    style: Theme.of(context).textTheme.headlineLarge,
+                  ),
+                  TextField(
+                    decoration: const InputDecoration(
+                      hintText: 'Enter your email',
+                    ),
+                    controller: email,
+                  ),
+                ],
+              ),
+            ),
+            const Spacer(),
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.only(left: 24, right: 24),
+              child: ElevatedButton(
+                onPressed: (enableButtonNotifier)
+                    ? () => ref
+                        .read(forgetPasswordProvider.notifier)
+                        .otpConfirmation(
+                          email: email.text.toString(),
+                        )
+                    : null,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: (enableButtonNotifier)
+                      ? Theme.of(context).colorScheme.primary
+                      : Theme.of(context).colorScheme.secondary,
+                  minimumSize: const Size(double.infinity, 50),
+                ),
+                child: loginState.isLoading
+                    ? const CircularProgressIndicator(
+                        backgroundColor: Colors.white,
+                      )
+                    : Text(
+                        'Submit',
+                        style: TextStyle(
+                          color: (enableButtonNotifier)
+                              ? Theme.of(context).colorScheme.surface
+                              : Theme.of(context).colorScheme.tertiary,
+                        ),
+                      ),
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                context.go("/");
+              },
+              child: Text(
+                'Remember your password? Log In',
+                style: Theme.of(context).textTheme.headlineLarge,
+              ),
+            ),
+            const SizedBox(height: 37),
+          ],
         ),
       ),
     );

@@ -212,7 +212,7 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                     GoRouter.of(context).pushNamed(Routes.login);
                   },
                   child: Text(
-                    'Already have an account?Log In',
+                    'Already have an account? Log In',
                     style: Theme.of(context).textTheme.headlineLarge,
                   ),
                 ),

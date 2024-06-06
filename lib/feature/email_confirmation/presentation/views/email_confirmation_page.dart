@@ -155,97 +155,96 @@ class _EmailConfirmationPageState extends ConsumerState<EmailConfirmationPage> {
           },
         ),
       ),
-      body: SingleChildScrollView(
-        child: SafeArea(
-          child: Center(
-            child: Column(
-              children: [
-                Stack(
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            children: [
+              Stack(
+                children: [
+                  Text(
+                    'Email Confirmation',
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                  const Underline(right: 77),
+                ],
+              ),
+              const SizedBox(height: 16),
+              Text(
+                "We've sent a code to your email address",
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              Text(
+                'Please check your inbox',
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              const SizedBox(height: 70),
+              Padding(
+                padding: const EdgeInsets.only(left: 24, right: 24),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Email Confirmation',
-                      style: Theme.of(context).textTheme.titleLarge,
+                      'Your code',
+                      style: Theme.of(context).textTheme.headlineLarge,
                     ),
-                    const Underline(right: 77),
+                    TextField(
+                      decoration: const InputDecoration(
+                        hintText: '',
+                      ),
+                      controller: otp,
+                    ),
                   ],
                 ),
-                const SizedBox(height: 16),
-                Text(
-                  "We've sent a code to your email address",
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-                Text(
-                  'Please check your inbox',
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-                const SizedBox(height: 70),
-                Padding(
-                  padding: const EdgeInsets.only(left: 24, right: 24),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Your code',
-                        style: Theme.of(context).textTheme.headlineLarge,
-                      ),
-                      TextField(
-                        decoration: const InputDecoration(
-                          hintText: '',
-                        ),
-                        controller: otp,
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 347),
-                Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.only(left: 24, right: 24),
-                  child: ElevatedButton(
-                    onPressed: (enableButtonNotifier)
-                        ? () => ref
-                            .read(emailConfirmationProvider.notifier)
-                            .otpConfirmation(
-                              email: widget.email,
-                              otp: otp.text.toString(),
-                            )
-                        : null,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: (enableButtonNotifier)
-                          ? Theme.of(context).colorScheme.primary
-                          : Theme.of(context).colorScheme.secondary,
-                      minimumSize: const Size(double.infinity, 50),
-                    ),
-                    child: loginState.isLoading
-                        ? const CircularProgressIndicator(
-                            backgroundColor: Colors.white,
+              ),
+              const Spacer(),
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.only(left: 24, right: 24),
+                child: ElevatedButton(
+                  onPressed: (enableButtonNotifier)
+                      ? () => ref
+                          .read(emailConfirmationProvider.notifier)
+                          .otpConfirmation(
+                            email: widget.email,
+                            otp: otp.text.toString(),
                           )
-                        : Text(
-                            'Submit',
-                            style: TextStyle(
-                              color: (enableButtonNotifier)
-                                  ? Theme.of(context).colorScheme.surface
-                                  : Theme.of(context).colorScheme.tertiary,
-                            ),
+                      : null,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: (enableButtonNotifier)
+                        ? Theme.of(context).colorScheme.primary
+                        : Theme.of(context).colorScheme.secondary,
+                    minimumSize: const Size(double.infinity, 50),
+                  ),
+                  child: loginState.isLoading
+                      ? const CircularProgressIndicator(
+                          backgroundColor: Colors.white,
+                        )
+                      : Text(
+                          'Submit',
+                          style: TextStyle(
+                            color: (enableButtonNotifier)
+                                ? Theme.of(context).colorScheme.surface
+                                : Theme.of(context).colorScheme.tertiary,
                           ),
-                  ),
-                ),
-                if (_countDown > 0)
-                  Text(
-                    "Resend Email in ${_countDown.toString()} seconds",
-                    style: Theme.of(context).textTheme.headlineLarge,
-                  ),
-                if (_countDown == 0)
-                  TextButton(
-                    onPressed: () => ref
-                        .read(resendOtpControllerProvider.notifier)
-                        .otpConfirmation(
-                          email: widget.email,
                         ),
-                    child: const Text("Resend Email"),
-                  ),
-              ],
-            ),
+                ),
+              ),
+              if (_countDown > 0)
+                Text(
+                  "Resend OTP in ${_countDown.toString()} seconds",
+                  style: Theme.of(context).textTheme.headlineLarge,
+                ),
+              if (_countDown == 0)
+                TextButton(
+                  onPressed: () => ref
+                      .read(resendOtpControllerProvider.notifier)
+                      .otpConfirmation(
+                        email: widget.email,
+                      ),
+                  child: const Text("Resend OTP"),
+                ),
+              const SizedBox(height: 37),
+            ],
           ),
         ),
       ),

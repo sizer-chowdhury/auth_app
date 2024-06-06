@@ -84,91 +84,90 @@ class _ResetPasswordPageState extends ConsumerState<ResetPasswordPage> {
           },
         ),
       ),
-      body: SingleChildScrollView(
-        child: SafeArea(
-          child: Center(
-            child: Column(
-              children: [
-                Stack(
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            children: [
+              Stack(
+                children: [
+                  Text(
+                    'Reset Password',
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                  const Underline(right: 77),
+                ],
+              ),
+              const SizedBox(height: 16),
+              Text(
+                "Please enter a new password. Don't enter",
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              Text(
+                'your old password',
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              const SizedBox(height: 70),
+              Padding(
+                padding: const EdgeInsets.only(left: 24, right: 24),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Reset Password',
-                      style: Theme.of(context).textTheme.titleLarge,
+                      'Password',
+                      style: Theme.of(context).textTheme.headlineLarge,
                     ),
-                    const Underline(right: 77),
+                    PasswordField(
+                      controller: password,
+                      hintText: '',
+                    ),
+                    const SizedBox(height: 30),
+                    Text(
+                      'Confirm Password',
+                      style: Theme.of(context).textTheme.headlineLarge,
+                    ),
+                    PasswordField(
+                      controller: confirmPassword,
+                      hintText: '',
+                    ),
                   ],
                 ),
-                const SizedBox(height: 16),
-                Text(
-                  "Please enter a new password. Don't enter",
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-                Text(
-                  'your old password',
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-                const SizedBox(height: 70),
-                Padding(
-                  padding: const EdgeInsets.only(left: 24, right: 24),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Password',
-                        style: Theme.of(context).textTheme.headlineLarge,
-                      ),
-                      PasswordField(
-                        controller: password,
-                        hintText: '',
-                      ),
-                      const SizedBox(height: 30),
-                      Text(
-                        'Confirm Password',
-                        style: Theme.of(context).textTheme.headlineLarge,
-                      ),
-                      PasswordField(
-                        controller: confirmPassword,
-                        hintText: '',
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 288),
-                Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.only(left: 24, right: 24),
-                  child: ElevatedButton(
-                    onPressed: (isButtonEnable)
-                        ? () => ref
-                            .read(resetPasswordProvider.notifier)
-                            .resetPassword(
-                              email: widget.email,
-                              password: password.text.toString(),
-                              confirmPassword: confirmPassword.text.toString(),
-                            )
-                        : null,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: (isButtonEnable)
-                          ? Theme.of(context).colorScheme.primary
-                          : Theme.of(context).colorScheme.secondary,
-                      minimumSize: const Size(double.infinity, 50),
-                    ),
-                    child: loginState.isLoading
-                        ? const CircularProgressIndicator(
-                            backgroundColor: Colors.white,
+              ),
+              const Spacer(),
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.only(left: 24, right: 24),
+                child: ElevatedButton(
+                  onPressed: (isButtonEnable)
+                      ? () => ref
+                          .read(resetPasswordProvider.notifier)
+                          .resetPassword(
+                            email: widget.email,
+                            password: password.text.toString(),
+                            confirmPassword: confirmPassword.text.toString(),
                           )
-                        : Text(
-                            'Reset Password',
-                            style: TextStyle(
-                              color: (isButtonEnable)
-                                  ? Theme.of(context).colorScheme.surface
-                                  : Theme.of(context).colorScheme.tertiary,
-                            ),
-                          ),
+                      : null,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: (isButtonEnable)
+                        ? Theme.of(context).colorScheme.primary
+                        : Theme.of(context).colorScheme.secondary,
+                    minimumSize: const Size(double.infinity, 50),
                   ),
+                  child: loginState.isLoading
+                      ? const CircularProgressIndicator(
+                          backgroundColor: Colors.white,
+                        )
+                      : Text(
+                          'Reset Password',
+                          style: TextStyle(
+                            color: (isButtonEnable)
+                                ? Theme.of(context).colorScheme.surface
+                                : Theme.of(context).colorScheme.tertiary,
+                          ),
+                        ),
                 ),
-              ],
-            ),
+              ),
+              const SizedBox(height: 37),
+            ],
           ),
         ),
       ),

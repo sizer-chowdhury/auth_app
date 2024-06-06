@@ -21,6 +21,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
   bool isButtonEnable = false;
+  bool? enableCheckbox = false;
 
   ({bool email, bool password}) enableButtonNotifier =
       (email: false, password: false);
@@ -51,11 +52,12 @@ class _LoginPageState extends ConsumerState<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    final loginState = ref.watch(loginProvider);
-    ref.listen(loginProvider, (_, next) async {
+    final loginState = ref.watch(signInProvider);
+    ref.listen(signInProvider, (_, next) async {
       if (next.value != null) {
         context.go('/homePage');
       } else if (next.hasError && !next.isLoading) {
+        print(next.hasError);
         _buildShowDialog(context);
       }
     });
@@ -175,15 +177,43 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                 children: [
                   Row(
                     children: [
-                     SizedBox(
-                       height: 15,
-                       width: 15,
-                       child:  Checkbox(
-                         value: false,
-                         onChanged: (newValue) {},
-
-                       ),
-                     ),
+                      SizedBox(
+                        height: 10,
+                        width: 10,
+                        child: Checkbox(
+                          value: enableCheckbox,
+                          onChanged: (newValue) {
+                            setState(() {
+                              enableCheckbox = newValue;
+                            });
+                          },
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(6),
+                          ),
+                          fillColor: (enableCheckbox!)
+                              ? WidgetStatePropertyAll(
+                            Theme.of(context).colorScheme.primary,
+                          )
+                              : WidgetStatePropertyAll(
+                            Theme.of(context)
+                                .colorScheme
+                                .secondary
+                                .withOpacity(0.5),
+                          ),
+                          side: (enableCheckbox!)
+                              ? BorderSide(
+                            color: Theme.of(context)
+                                .colorScheme
+                                .primary
+                                .withOpacity(0.1),
+                            width: 2,
+                          )
+                              : BorderSide(
+                            color: Theme.of(context).colorScheme.primary,
+                            width: 2,
+                          ),
+                        ),
+                      ),
                       const SizedBox(width: 7),
                       Text(
                         'Remember Me',
@@ -210,7 +240,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
               padding: const EdgeInsets.only(left: 24, right: 24),
               child: ElevatedButton(
                 onPressed: (isButtonEnable)
-                    ? () => ref.read(loginProvider.notifier).signIn(
+                    ? () => ref.read(signInProvider.notifier).signIn(
                           email: email.text.toString(),
                           password: password.text.toString(),
                         )
@@ -240,7 +270,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                 GoRouter.of(context).pushNamed(Routes.signup);
               },
               child: Text(
-                "Don't have an account?Signup",
+                "Don't have an account? Signup",
                 style: Theme.of(context).textTheme.headlineLarge,
               ),
             ),
