@@ -13,9 +13,10 @@ LoginRemoteDataSource loginRemoteDataSource(Ref ref) {
 }
 
 class LoginRemoteDataSource {
+  Response? response;
   FutureOr<LoginModel?> signIn({required email, required password}) async {
     try {
-      Response response = await post(
+       response = await post(
         Uri.parse('http://34.72.136.54:4067/api/v1/auth/login'),
         body: {
           'email': email,
@@ -25,9 +26,9 @@ class LoginRemoteDataSource {
           'FCMToken': 'Token1',
         },
       );
-      return LoginModel.fromJson(jsonDecode(response.body));
+      return LoginModel.fromJson(jsonDecode(response!.body));
     } catch (error) {
-      throw Exception('error');
+      throw Exception(jsonDecode(response!.body)['message']);
     }
   }
 }

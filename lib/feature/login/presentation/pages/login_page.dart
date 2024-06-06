@@ -57,8 +57,32 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       if (next.value != null) {
         context.go('/homePage');
       } else if (next.hasError && !next.isLoading) {
-        print(next.hasError);
-        _buildShowDialog(context);
+        String message = next.error.toString();
+        if (message.startsWith('Exception: ')) {
+          message = message.substring('Exception: '.length);
+        }
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text('Error! Bad request.'),
+              content: Text(
+                message,
+                style: const TextStyle(
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('OK'),
+                ),
+              ],
+            );
+          },
+        );
       }
     });
     return Scaffold(
@@ -192,26 +216,26 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                           ),
                           fillColor: (enableCheckbox!)
                               ? WidgetStatePropertyAll(
-                            Theme.of(context).colorScheme.primary,
-                          )
+                                  Theme.of(context).colorScheme.primary,
+                                )
                               : WidgetStatePropertyAll(
-                            Theme.of(context)
-                                .colorScheme
-                                .secondary
-                                .withOpacity(0.5),
-                          ),
+                                  Theme.of(context)
+                                      .colorScheme
+                                      .secondary
+                                      .withOpacity(0.5),
+                                ),
                           side: (enableCheckbox!)
                               ? BorderSide(
-                            color: Theme.of(context)
-                                .colorScheme
-                                .primary
-                                .withOpacity(0.1),
-                            width: 2,
-                          )
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .primary
+                                      .withOpacity(0.1),
+                                  width: 2,
+                                )
                               : BorderSide(
-                            color: Theme.of(context).colorScheme.primary,
-                            width: 2,
-                          ),
+                                  color: Theme.of(context).colorScheme.primary,
+                                  width: 2,
+                                ),
                         ),
                       ),
                       const SizedBox(width: 7),
@@ -281,23 +305,23 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     );
   }
 
-  Future<dynamic> _buildShowDialog(BuildContext context) {
-    return showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Error! Bad request.'),
-          content: const Text('Invalid Email or Password'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('OK'),
-            ),
-          ],
-        );
-      },
-    );
-  }
+// Future<dynamic> _buildShowDialog(BuildContext context) {
+//   return showDialog(
+//     context: context,
+//     builder: (BuildContext context) {
+//       return AlertDialog(
+//         title: const Text('Error! Bad request.'),
+//         content: const Text('Invalid Email or Password'),
+//         actions: [
+//           TextButton(
+//             onPressed: () {
+//               Navigator.of(context).pop();
+//             },
+//             child: const Text('OK'),
+//           ),
+//         ],
+//       );
+//     },
+//   );
+// }
 }
