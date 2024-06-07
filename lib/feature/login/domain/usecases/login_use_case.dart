@@ -3,11 +3,11 @@ import 'package:authentication_app/feature/login/data/repositories/login_reposit
 import 'package:authentication_app/feature/login/domain/entities/login_entity.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'user_login.g.dart';
+part 'login_use_case.g.dart';
 
 @riverpod
 LoginUseCase loginUseCase(LoginUseCaseRef ref) {
-  final loginImp = ref.read(loginRepostoryImpProvider);
+  final loginImp = ref.read(loginRepositoryImpProvider);
   return LoginUseCase(loginImp: loginImp);
 }
 
@@ -20,9 +20,10 @@ class LoginUseCase {
     required String email,
     required String password,
   }) async {
-    return await loginImp.getUserLogin(
+    LoginEntity? abc = await loginImp.getUserLogin(
       email: email,
       password: password,
     );
+    return abc;
   }
 }

@@ -8,7 +8,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'login_repository_imp.g.dart';
 
 @riverpod
-LoginRepositoryImp loginRepostoryImp(Ref ref) {
+LoginRepositoryImp loginRepositoryImp(Ref ref) {
   final remoteDatasource = ref.read(loginRemoteDataSourceProvider);
   return LoginRepositoryImp(remoteDatasource);
 }

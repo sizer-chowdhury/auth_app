@@ -1,5 +1,5 @@
 import 'package:authentication_app/feature/login/domain/entities/login_entity.dart';
-import 'package:authentication_app/feature/login/domain/usecases/user_login.dart';
+import 'package:authentication_app/feature/login/domain/usecases/login_use_case.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'login_controller.g.dart';

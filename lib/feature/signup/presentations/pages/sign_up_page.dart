@@ -1,7 +1,7 @@
 import 'package:authentication_app/core/navigation/routes/routes_name.dart';
 import 'package:authentication_app/core/widgets/password_filed.dart';
 import 'package:authentication_app/core/widgets/title_underline.dart';
-import 'package:authentication_app/feature/signup/controller/signup_controller.dart';
+import 'package:authentication_app/feature/signup/presentations/riverpod/signup_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -66,7 +66,7 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
     final loginState = ref.watch(signupProvider);
 
     ref.listen(signupProvider, (_, next) {
-      if (next.value ?? false) {
+      if (next.value?.$1 != null && next.value?.$2 == null) {
         String? emailController = email.text.toString();
         String pageSelector = "signUp";
         showDialog(
@@ -88,8 +88,24 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
             );
           },
         );
-      } else if (next.hasError && !next.isLoading) {
-        _buildShowDialog(context);
+      } else if (next.value?.$1 == null && next.value?.$2 != null) {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text('User already exist. Please Login'),
+              content: Text('${next.value?.$2}'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('OK'),
+                ),
+              ],
+            );
+          },
+        );
       }
     });
 
@@ -221,26 +237,6 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
           ),
         ),
       ),
-    );
-  }
-
-  Future<dynamic> _buildShowDialog(BuildContext context) {
-    return showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('User already exist. Please Login'),
-          content: const Text('Failed to create new account.'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('OK'),
-            ),
-          ],
-        );
-      },
     );
   }
 }

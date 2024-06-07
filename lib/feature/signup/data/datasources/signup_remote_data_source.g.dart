@@ -1,27 +1,28 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'login_repository_imp.dart';
+part of 'signup_remote_data_source.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$loginRepositoryImpHash() =>
-    r'85aaabed2de34e7a2729dbdf6e2967a8ff1b2313';
+String _$signUpRemoteDataSourceHash() =>
+    r'c9d761e1b8e5b6cae955bd39983972adc5e11df4';
 
-/// See also [loginRepositoryImp].
-@ProviderFor(loginRepositoryImp)
-final loginRepositoryImpProvider =
-    AutoDisposeProvider<LoginRepositoryImp>.internal(
-  loginRepositoryImp,
-  name: r'loginRepositoryImpProvider',
+/// See also [signUpRemoteDataSource].
+@ProviderFor(signUpRemoteDataSource)
+final signUpRemoteDataSourceProvider =
+    AutoDisposeProvider<SignUpRemoteDataSource>.internal(
+  signUpRemoteDataSource,
+  name: r'signUpRemoteDataSourceProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$loginRepositoryImpHash,
+      : _$signUpRemoteDataSourceHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef LoginRepositoryImpRef = AutoDisposeProviderRef<LoginRepositoryImp>;
+typedef SignUpRemoteDataSourceRef
+    = AutoDisposeProviderRef<SignUpRemoteDataSource>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

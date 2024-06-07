@@ -7,7 +7,7 @@ part 'login_repository.g.dart';
 
 @riverpod
 LoginRepositoryImp loginRepository(Ref ref) {
-  return ref.read(loginRepostoryImpProvider);
+  return ref.read(loginRepositoryImpProvider);
 }
 
 abstract class LoginRepository {
