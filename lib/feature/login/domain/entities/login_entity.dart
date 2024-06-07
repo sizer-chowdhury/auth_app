@@ -1,8 +1,13 @@
-import 'package:authentication_app/feature/login/domain/entities/sub_entities.dart';
+import 'package:authentication_app/feature/login/domain/entities/user_entity.dart';
 
 class LoginEntity {
-  String message, token;
-  User user;
+  String message;
+  String? token;
+  User? user;
 
-  LoginEntity({required this.message, required this.token, required this.user});
+  LoginEntity({
+    required this.message,
+    this.token,
+    this.user,
+  });
 }

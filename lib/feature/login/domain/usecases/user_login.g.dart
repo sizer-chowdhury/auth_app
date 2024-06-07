@@ -6,19 +6,19 @@ part of 'user_login.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$loginUsecaseHash() => r'f53a0c2ad89de1bee446587bf0e4050a4eddd188';
+String _$loginUseCaseHash() => r'b7f4a06927021afd3b0510d17bc9d71dbaecfaa0';
 
-/// See also [loginUsecase].
-@ProviderFor(loginUsecase)
-final loginUsecaseProvider = AutoDisposeProvider<LoginUsecase>.internal(
-  loginUsecase,
-  name: r'loginUsecaseProvider',
+/// See also [loginUseCase].
+@ProviderFor(loginUseCase)
+final loginUseCaseProvider = AutoDisposeProvider<LoginUseCase>.internal(
+  loginUseCase,
+  name: r'loginUseCaseProvider',
   debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$loginUsecaseHash,
+      const bool.fromEnvironment('dart.vm.product') ? null : _$loginUseCaseHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef LoginUsecaseRef = AutoDisposeProviderRef<LoginUsecase>;
+typedef LoginUseCaseRef = AutoDisposeProviderRef<LoginUseCase>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

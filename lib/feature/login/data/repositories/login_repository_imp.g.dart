@@ -6,7 +6,7 @@ part of 'login_repository_imp.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$loginRepostoryImpHash() => r'a66e34dbc3ecbf2e4b3e04a5240ce7659ab1d8ff';
+String _$loginRepostoryImpHash() => r'e0518ae45e8748affec8670a890040463c64956b';
 
 /// See also [loginRepostoryImp].
 @ProviderFor(loginRepostoryImp)
