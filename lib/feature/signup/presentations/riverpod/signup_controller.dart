@@ -1,5 +1,5 @@
 import 'package:authentication_app/feature/signup/domain/entities/signup_entity.dart';
-import 'package:authentication_app/feature/signup/domain/usecases/signup_use_case.dart';
+import 'package:authentication_app/feature/signup/domain/use_cases/signup_use_case.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'signup_controller.g.dart';

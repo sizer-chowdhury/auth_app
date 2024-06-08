@@ -1,5 +1,6 @@
-import 'package:authentication_app/feature/login/data/datasources/local_data_source.dart';
-import 'package:authentication_app/feature/login/data/datasources/remote_data_source.dart';
+
+import 'package:authentication_app/feature/login/data/data_sources/local_data_source.dart';
+import 'package:authentication_app/feature/login/data/data_sources/remote_data_source.dart';
 import 'package:authentication_app/feature/login/data/models/login_model.dart';
 import 'package:authentication_app/feature/login/domain/repositories/login_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
