@@ -1,26 +1,25 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'email_confirmation_controller.dart';
+part of 'resend_otp_use_case.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$emailConfirmationHash() => r'3eb486796fc696ca36af9f66ee9f81ca8d89e450';
+String _$resendOtpUseCaseHash() => r'b759f5ce8aed560062bee0c2f856f84fe5f75445';
 
-/// See also [EmailConfirmation].
-@ProviderFor(EmailConfirmation)
-final emailConfirmationProvider =
-    AutoDisposeAsyncNotifierProvider<EmailConfirmation, bool?>.internal(
-  EmailConfirmation.new,
-  name: r'emailConfirmationProvider',
+/// See also [resendOtpUseCase].
+@ProviderFor(resendOtpUseCase)
+final resendOtpUseCaseProvider = AutoDisposeProvider<ResendOtpUseCase>.internal(
+  resendOtpUseCase,
+  name: r'resendOtpUseCaseProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$emailConfirmationHash,
+      : _$resendOtpUseCaseHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$EmailConfirmation = AutoDisposeAsyncNotifier<bool?>;
+typedef ResendOtpUseCaseRef = AutoDisposeProviderRef<ResendOtpUseCase>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

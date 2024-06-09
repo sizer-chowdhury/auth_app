@@ -1,27 +1,26 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'resend_otp_controller.dart';
+part of 'otp_controller.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$resendOtpControllerHash() =>
-    r'03d4ea4dcb8270afde1b73791c109d44d9b8d21d';
+String _$otpControllerHash() => r'2f5490f84aa001f52e9ced4d29e90b54f97fca6a';
 
-/// See also [ResendOtpController].
-@ProviderFor(ResendOtpController)
-final resendOtpControllerProvider =
-    AutoDisposeAsyncNotifierProvider<ResendOtpController, bool?>.internal(
-  ResendOtpController.new,
-  name: r'resendOtpControllerProvider',
+/// See also [OtpController].
+@ProviderFor(OtpController)
+final otpControllerProvider = AutoDisposeAsyncNotifierProvider<OtpController,
+    (ResendOtpEntity?, String?)>.internal(
+  OtpController.new,
+  name: r'otpControllerProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$resendOtpControllerHash,
+      : _$otpControllerHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$ResendOtpController = AutoDisposeAsyncNotifier<bool?>;
+typedef _$OtpController = AutoDisposeAsyncNotifier<(ResendOtpEntity?, String?)>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

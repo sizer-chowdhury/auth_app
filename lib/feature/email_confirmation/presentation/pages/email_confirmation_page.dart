@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:authentication_app/core/widgets/title_underline.dart';
-import 'package:authentication_app/feature/email_confirmation/controller/email_confirmation_controller.dart';
-import 'package:authentication_app/feature/email_confirmation/controller/resend_otp_controller.dart';
+import 'package:authentication_app/feature/email_confirmation/presentation/riverpod/email_confirmation_controller.dart';
+import 'package:authentication_app/feature/email_confirmation/presentation/riverpod/otp_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -74,10 +74,10 @@ class _EmailConfirmationPageState extends ConsumerState<EmailConfirmationPage> {
 
   @override
   Widget build(BuildContext context) {
-    final loginState = ref.watch(emailConfirmationProvider);
+    final loginState = ref.watch(emailConfirmationControllerProvider);
 
-    ref.listen(emailConfirmationProvider, (_, next) {
-      if (next.value ?? false) {
+    ref.listen(emailConfirmationControllerProvider, (_, next) {
+      if (next.value?.$1 != null) {
         showDialog(
           context: context,
           builder: (BuildContext context) {
@@ -100,19 +100,35 @@ class _EmailConfirmationPageState extends ConsumerState<EmailConfirmationPage> {
             );
           },
         );
-      } else if (next.hasError && !next.isLoading) {
-        _buildShowDialog(context);
-      }
-    });
-
-    ref.listen(resendOtpControllerProvider, (_, next) {
-      if (next.value ?? false) {
+      } else if (next.value?.$2 != null) {
         showDialog(
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: const Text('Resend OTP successfully!'),
-              content: const Text('Check your inbox'),
+              title: const Text('Failed'),
+              content: const Text('OTP sent to your email.'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('OK'),
+                ),
+              ],
+            );
+          },
+        );
+      }
+    });
+
+    ref.listen(otpControllerProvider, (_, next) {
+      if (next.value?.$1 != null) {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text('Successful!'),
+              content: Text('${next.value?.$1?.message}'),
               actions: [
                 TextButton(
                   onPressed: () {
@@ -125,16 +141,17 @@ class _EmailConfirmationPageState extends ConsumerState<EmailConfirmationPage> {
             );
           },
         );
-      } else if (next.hasError && !next.isLoading) {
+      } else if (next.value?.$2 != null) {
         showDialog(
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: const Text('User already exist. Please Login'),
-              content: const Text('Failed to create new account.'),
+              title: const Text('Error!'),
+              content: Text('${next.value?.$2?.toString()}'),
               actions: [
                 TextButton(
                   onPressed: () {
+                    resendOtp();
                     Navigator.of(context).pop();
                   },
                   child: const Text('OK'),
@@ -162,7 +179,7 @@ class _EmailConfirmationPageState extends ConsumerState<EmailConfirmationPage> {
               Stack(
                 children: [
                   Text(
-                    'Email Confirmation',
+                    'Email Confirmation..',
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                   const Underline(right: 77),
@@ -203,8 +220,8 @@ class _EmailConfirmationPageState extends ConsumerState<EmailConfirmationPage> {
                 child: ElevatedButton(
                   onPressed: (enableButtonNotifier)
                       ? () => ref
-                          .read(emailConfirmationProvider.notifier)
-                          .otpConfirmation(
+                          .read(emailConfirmationControllerProvider.notifier)
+                          .emailConfirmation(
                             email: widget.email,
                             otp: otp.text.toString(),
                           )
@@ -236,11 +253,11 @@ class _EmailConfirmationPageState extends ConsumerState<EmailConfirmationPage> {
                 ),
               if (_countDown == 0)
                 TextButton(
-                  onPressed: () => ref
-                      .read(resendOtpControllerProvider.notifier)
-                      .otpConfirmation(
-                        email: widget.email,
-                      ),
+                  onPressed: () {
+                    ref.read(otpControllerProvider.notifier).resendEmail(
+                          widget.email,
+                        );
+                  },
                   child: const Text("Resend OTP"),
                 ),
               const SizedBox(height: 37),
@@ -248,26 +265,6 @@ class _EmailConfirmationPageState extends ConsumerState<EmailConfirmationPage> {
           ),
         ),
       ),
-    );
-  }
-
-  Future<dynamic> _buildShowDialog(BuildContext context) {
-    return showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Failed'),
-          content: const Text('Failed to send otp.'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('OK'),
-            ),
-          ],
-        );
-      },
     );
   }
 }

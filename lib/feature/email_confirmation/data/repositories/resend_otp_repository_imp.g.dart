@@ -1,27 +1,28 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'forget_password_controller.dart';
+part of 'resend_otp_repository_imp.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$forgetPasswordHash() => r'5646eca6a035270677b8a1a38d0eea8e2b003c15';
+String _$resendOtpRepositoryImpHash() =>
+    r'a25f07c881e415eb2da1812154157204a0986c5f';
 
-/// See also [ForgetPassword].
-@ProviderFor(ForgetPassword)
-final forgetPasswordProvider = AutoDisposeAsyncNotifierProvider<ForgetPassword,
-    (ForgetPasswordEntity?, String?)>.internal(
-  ForgetPassword.new,
-  name: r'forgetPasswordProvider',
+/// See also [resendOtpRepositoryImp].
+@ProviderFor(resendOtpRepositoryImp)
+final resendOtpRepositoryImpProvider =
+    AutoDisposeProvider<ResendOtpRepositoryImp>.internal(
+  resendOtpRepositoryImp,
+  name: r'resendOtpRepositoryImpProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$forgetPasswordHash,
+      : _$resendOtpRepositoryImpHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef _$ForgetPassword
-    = AutoDisposeAsyncNotifier<(ForgetPasswordEntity?, String?)>;
+typedef ResendOtpRepositoryImpRef
+    = AutoDisposeProviderRef<ResendOtpRepositoryImp>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

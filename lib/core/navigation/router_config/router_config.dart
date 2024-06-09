@@ -1,11 +1,11 @@
 import 'package:authentication_app/core/navigation/routes/routes_name.dart';
+import 'package:authentication_app/feature/email_confirmation/presentation/pages/email_confirmation_page.dart';
 import 'package:authentication_app/feature/forget_password/presentation/pages/forget_password_page.dart';
 import 'package:authentication_app/feature/login/presentation/pages/login_page.dart';
 import 'package:authentication_app/feature/signup/presentations/pages/sign_up_page.dart';
 import 'package:authentication_app/feature/home_page/presentation/views/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:authentication_app/feature/email_confirmation/presentation/views/email_confirmation_page.dart';
 import 'package:authentication_app/feature/reset_password/presentation/views/reset_password_page.dart';
 
 class MyRouterConfig {
