@@ -1,6 +1,6 @@
 import 'package:authentication_app/core/widgets/password_filed.dart';
 import 'package:authentication_app/core/widgets/title_underline.dart';
-import 'package:authentication_app/feature/reset_password/controller/reset_password_controller.dart';
+import 'package:authentication_app/feature/reset_password/presentation/riverpod/reset_password_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -48,16 +48,16 @@ class _ResetPasswordPageState extends ConsumerState<ResetPasswordPage> {
 
   @override
   Widget build(BuildContext context) {
-    final loginState = ref.watch(resetPasswordProvider);
+    final loginState = ref.watch(resetPasswordControllerProvider);
 
-    ref.listen(resetPasswordProvider, (_, next) {
-      if (next.value ?? false) {
+    ref.listen(resetPasswordControllerProvider, (_, next) {
+      if (next.value?.$1 != null) {
         showDialog(
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: const Text('Password Reset successfully!'),
-              content: const Text('Press OK and logIn.'),
+              title: const Text('successful!'),
+              content: Text('${next.value?.$1?.message}'),
               actions: [
                 TextButton(
                   onPressed: () {
@@ -70,8 +70,24 @@ class _ResetPasswordPageState extends ConsumerState<ResetPasswordPage> {
             );
           },
         );
-      } else if (next.hasError && !next.isLoading) {
-        _buildShowDialog(context);
+      } else if (next.value?.$2 != null) {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text('Error!'),
+              content: Text('${next.value?.$2?.toString()}'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('OK'),
+                ),
+              ],
+            );
+          },
+        );
       }
     });
 
@@ -139,7 +155,7 @@ class _ResetPasswordPageState extends ConsumerState<ResetPasswordPage> {
                 child: ElevatedButton(
                   onPressed: (isButtonEnable)
                       ? () => ref
-                          .read(resetPasswordProvider.notifier)
+                          .read(resetPasswordControllerProvider.notifier)
                           .resetPassword(
                             email: widget.email,
                             password: password.text.toString(),
@@ -171,26 +187,6 @@ class _ResetPasswordPageState extends ConsumerState<ResetPasswordPage> {
           ),
         ),
       ),
-    );
-  }
-
-  Future<dynamic> _buildShowDialog(BuildContext context) {
-    return showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Error! Bad request.'),
-          content: const Text('Password reset failed. Verify OTP'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('OK'),
-            ),
-          ],
-        );
-      },
     );
   }
 }

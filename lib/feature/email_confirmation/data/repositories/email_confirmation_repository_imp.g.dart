@@ -7,7 +7,7 @@ part of 'email_confirmation_repository_imp.dart';
 // **************************************************************************
 
 String _$emailConfirmationRepositoryImpHash() =>
-    r'72298e344559e55216647e105d938310bc65483a';
+    r'6c7590c24bd6d534d21cb931ecf05ad1533e4641';
 
 /// See also [emailConfirmationRepositoryImp].
 @ProviderFor(emailConfirmationRepositoryImp)
