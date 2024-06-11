@@ -79,7 +79,13 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                 TextButton(
                   onPressed: () {
                     Navigator.of(context).pop();
-                    context.go(Routes.emailConfirmation);
+                    context.go(
+                      Routes.emailConfirmation,
+                      extra: {
+                        'pageSelector': pageSelector,
+                        'email': emailController,
+                      },
+                    );
                   },
                   child: const Text('OK'),
                 ),
