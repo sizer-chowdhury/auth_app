@@ -1,4 +1,4 @@
-import 'package:authentication_app/feature/signup/data/datasources/signup_remote_data_source.dart';
+import 'package:authentication_app/feature/signup/data/data_sources/signup_remote_data_source.dart';
 import 'package:authentication_app/feature/signup/data/repositories/signup_repository_imp.dart';
 import 'package:authentication_app/feature/signup/domain/entities/signup_entity.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

@@ -39,26 +39,10 @@ class _HomePageState extends ConsumerState<HomePage> {
     });
 
     ref.listen(logoutControllerProvider, (_, next) {
-      if (next.value?.$1 != null) {
-        context.go('/');
-      } else if (next.value?.$2 != null) {
-        showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: const Text('Error! Bad request.'),
-              content: const Text('Logout failed'),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: const Text('OK'),
-                ),
-              ],
-            );
-          },
-        );
+      if (next.value ?? false) {
+        context.push('/');
+      } else if (next.hasError && !next.isLoading) {
+        print('logout failed');
       }
     });
 

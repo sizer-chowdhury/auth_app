@@ -5,8 +5,7 @@ class ForgetPasswordModel extends ForgetPasswordEntity {
     required super.message,
   });
 
-  static ForgetPasswordModel fromJson(Map<String, dynamic> json) {
-
+  factory ForgetPasswordModel.fromJson(Map<String, dynamic> json) {
     return ForgetPasswordModel(
       message: json['message'],
     );

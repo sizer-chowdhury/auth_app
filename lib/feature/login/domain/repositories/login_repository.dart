@@ -1,4 +1,4 @@
-import 'package:authentication_app/feature/login/data/datasources/remote_data_source.dart';
+import 'package:authentication_app/feature/login/data/data_sources/remote_data_source.dart';
 import 'package:authentication_app/feature/login/data/repositories/login_repository_imp.dart';
 import 'package:authentication_app/feature/login/domain/entities/login_entity.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

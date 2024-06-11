@@ -1,3 +1,4 @@
+import 'package:authentication_app/core/navigation/routes/routes_name.dart';
 import 'package:authentication_app/core/widgets/title_underline.dart';
 import 'package:authentication_app/feature/forget_password/presentation/riverpod/forget_password_controller.dart';
 import 'package:flutter/material.dart';
@@ -50,7 +51,11 @@ class _ForgetPasswordPageState extends ConsumerState<ForgetPasswordPage> {
                   onPressed: () {
                     Navigator.of(context).pop();
                     context.go(
-                      '/emailConfirmation/$emailController/$pageSelector',
+                      Routes.emailConfirmation,
+                      extra: {
+                        'pageSelector': pageSelector,
+                        'email': emailController,
+                      },
                     );
                   },
                   child: const Text('OK'),

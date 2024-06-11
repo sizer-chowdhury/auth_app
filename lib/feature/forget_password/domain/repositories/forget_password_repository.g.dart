@@ -7,12 +7,12 @@ part of 'forget_password_repository.dart';
 // **************************************************************************
 
 String _$forgetPasswordRepositoryHash() =>
-    r'0fb1f34b99e7415df1f90bd54446a57261af4ee8';
+    r'3f7a5d1a05ffcf3a022e963c94d69c9b48437289';
 
 /// See also [forgetPasswordRepository].
 @ProviderFor(forgetPasswordRepository)
 final forgetPasswordRepositoryProvider =
-    AutoDisposeProvider<ForgetPasswordRepositoryImp>.internal(
+    AutoDisposeProvider<ForgetPasswordRepository>.internal(
   forgetPasswordRepository,
   name: r'forgetPasswordRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -23,6 +23,6 @@ final forgetPasswordRepositoryProvider =
 );
 
 typedef ForgetPasswordRepositoryRef
-    = AutoDisposeProviderRef<ForgetPasswordRepositoryImp>;
+    = AutoDisposeProviderRef<ForgetPasswordRepository>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

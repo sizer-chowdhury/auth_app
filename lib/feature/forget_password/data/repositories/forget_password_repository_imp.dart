@@ -4,14 +4,6 @@ import 'package:authentication_app/feature/forget_password/domain/repositories/f
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'forget_password_repository_imp.g.dart';
-
-@riverpod
-ForgetPasswordRepositoryImp forgetPasswordRepositoryImp(Ref ref) {
-  final remoteDatasource = ref.read(forgetPasswordRemoteDataSourceProvider);
-  return ForgetPasswordRepositoryImp(remoteDatasource);
-}
-
 class ForgetPasswordRepositoryImp implements ForgetPasswordRepository {
   ForgetPasswordRemoteDataSource forgetPasswordRemoteDataSource;
 
