@@ -40,7 +40,7 @@ class _HomePageState extends ConsumerState<HomePage> {
 
     ref.listen(logoutControllerProvider, (_, next) {
       if (next.value?.$1 != null) {
-        context.go(Routes.login);
+        context.go('/');
       } else if (next.value?.$2 != null) {
         showDialog(
           context: context,
