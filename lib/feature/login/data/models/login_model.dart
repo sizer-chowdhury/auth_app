@@ -8,7 +8,7 @@ class LoginModel extends LoginEntity {
     super.user,
   });
 
-  static LoginModel fromJson(Map<String, dynamic> json) {
+  factory LoginModel.fromJson(Map<String, dynamic> json) {
     final String message = json['message'];
     final String token = json['token'];
     final String firstName = json['user']['firstname'];

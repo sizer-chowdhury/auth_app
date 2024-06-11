@@ -6,12 +6,11 @@ part of 'login_repository.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$loginRepositoryHash() => r'2289ae1e7c934f451230eab4dabd96a93ec9c88c';
+String _$loginRepositoryHash() => r'883ef71f67ffbe81eadd2f8f470b42a9188a5bc4';
 
 /// See also [loginRepository].
 @ProviderFor(loginRepository)
-final loginRepositoryProvider =
-    AutoDisposeProvider<LoginRepositoryImp>.internal(
+final loginRepositoryProvider = AutoDisposeProvider<LoginRepository>.internal(
   loginRepository,
   name: r'loginRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -21,6 +20,6 @@ final loginRepositoryProvider =
   allTransitiveDependencies: null,
 );
 
-typedef LoginRepositoryRef = AutoDisposeProviderRef<LoginRepositoryImp>;
+typedef LoginRepositoryRef = AutoDisposeProviderRef<LoginRepository>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

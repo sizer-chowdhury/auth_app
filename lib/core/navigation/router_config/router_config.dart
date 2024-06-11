@@ -12,24 +12,28 @@ class MyRouterConfig {
   static GoRouter router = GoRouter(
     routes: [
       GoRoute(
+        //name: Routes.login,
         path: Routes.login,
         pageBuilder: (context, state) {
           return const MaterialPage(child: LoginPage());
         },
       ),
       GoRoute(
+        //name: Routes.signup,
         path: Routes.signup,
         pageBuilder: (context, state) {
           return const MaterialPage(child: SignUpPage());
         },
       ),
       GoRoute(
+        //name: Routes.forgetPassword,
         path: Routes.forgetPassword,
         pageBuilder: (context, state) {
           return const MaterialPage(child: ForgetPasswordPage());
         },
       ),
       GoRoute(
+        //name: Routes.resetPassword,
         path: Routes.resetPassword,
         pageBuilder: (context, state) {
           final data = state.extra as Map<String,String>;
@@ -41,6 +45,7 @@ class MyRouterConfig {
         },
       ),
       GoRoute(
+        //name: Routes.emailConfirmation,
         path: Routes.emailConfirmation,
         pageBuilder: (context, state) {
           final data = state.extra as Map<String, String>;
@@ -53,6 +58,7 @@ class MyRouterConfig {
         },
       ),
       GoRoute(
+        // name: Routes.home,
         path: Routes.home,
         pageBuilder: (context, state) {
           return const MaterialPage(child: HomePage());

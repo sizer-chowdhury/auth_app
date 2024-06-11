@@ -3,16 +3,7 @@ import 'package:authentication_app/feature/login/data/data_sources/local_data_so
 import 'package:authentication_app/feature/login/data/data_sources/remote_data_source.dart';
 import 'package:authentication_app/feature/login/data/models/login_model.dart';
 import 'package:authentication_app/feature/login/domain/repositories/login_repository.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
-part 'login_repository_imp.g.dart';
-
-@riverpod
-LoginRepositoryImp loginRepositoryImp(Ref ref) {
-  final remoteDatasource = ref.read(loginRemoteDataSourceProvider);
-  return LoginRepositoryImp(remoteDatasource);
-}
 
 class LoginRepositoryImp implements LoginRepository {
   LoginRemoteDataSource loginRemoteDataSource;
@@ -20,7 +11,7 @@ class LoginRepositoryImp implements LoginRepository {
   LoginRepositoryImp(this.loginRemoteDataSource);
 
   @override
-  FutureOr<LoginModel?> getUserLogin({
+  FutureOr<LoginModel?> signIn({
     required String email,
     required String password,
   }) async {
