@@ -12,52 +12,48 @@ class MyRouterConfig {
   static GoRouter router = GoRouter(
     routes: [
       GoRoute(
-        name: Routes.login,
-        path: "/",
+        path: Routes.login,
         pageBuilder: (context, state) {
           return const MaterialPage(child: LoginPage());
         },
       ),
       GoRoute(
-        name: Routes.signup,
-        path: "/signUp",
+        path: Routes.signup,
         pageBuilder: (context, state) {
           return const MaterialPage(child: SignUpPage());
         },
       ),
       GoRoute(
-        name: Routes.forgetPassword,
-        path: "/forgetPassword",
+        path: Routes.forgetPassword,
         pageBuilder: (context, state) {
           return const MaterialPage(child: ForgetPasswordPage());
         },
       ),
       GoRoute(
-        name: Routes.resetPassword,
-        path: "/resetPassword/:email",
+        path: Routes.resetPassword,
         pageBuilder: (context, state) {
+          final data = state.extra as Map<String,String>;
           return MaterialPage(
             child: ResetPasswordPage(
-              email: state.pathParameters['email']!,
+              email: data['email']!,
             ),
           );
         },
       ),
       GoRoute(
-        name: Routes.emailConfirmation,
-        path: "/emailConfirmation/:email/:pageSelector",
+        path: Routes.emailConfirmation,
         pageBuilder: (context, state) {
+          final data = state.extra as Map<String, String>;
           return MaterialPage(
             child: EmailConfirmationPage(
-              email: state.pathParameters['email']!,
-              pageSelector: state.pathParameters['pageSelector']!,
+              email: data['email']!,
+              pageSelector: data['pageSelector']!,
             ),
           );
         },
       ),
       GoRoute(
-        name: Routes.home,
-        path: "/homePage",
+        path: Routes.home,
         pageBuilder: (context, state) {
           return const MaterialPage(child: HomePage());
         },
