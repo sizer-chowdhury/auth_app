@@ -3,8 +3,7 @@ import 'package:authentication_app/feature/email_confirmation/domain/entities/em
 class EmailConfirmationModel extends EmailConfirmationEntity {
   EmailConfirmationModel({required super.message});
 
-  static EmailConfirmationModel fromJson(Map<String, dynamic> json) {
-
+  factory EmailConfirmationModel.fromJson(Map<String, dynamic> json) {
     return EmailConfirmationModel(
       message: json['message'],
     );

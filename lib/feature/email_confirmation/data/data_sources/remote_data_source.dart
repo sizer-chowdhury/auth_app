@@ -8,14 +8,16 @@ part 'remote_data_source.g.dart';
 
 @riverpod
 EmailConfirmationRemoteDataSource emailConfirmationRemoteDataSource(
-    EmailConfirmationRemoteDataSourceRef ref,
-    ) {
+  EmailConfirmationRemoteDataSourceRef ref,
+) {
   return EmailConfirmationRemoteDataSource();
 }
 
 class EmailConfirmationRemoteDataSource {
-  static FutureOr<(EmailConfirmationModel?, String?)> emailConfirmation(
-      {required email, required otp,}) async {
+  static FutureOr<(EmailConfirmationModel?, String?)> emailConfirmation({
+    required email,
+    required otp,
+  }) async {
     try {
       Response response = await post(
         Uri.parse('http://34.72.136.54:4067/api/v1/auth/verifyOtp'),
@@ -26,8 +28,8 @@ class EmailConfirmationRemoteDataSource {
       );
       if (response.statusCode == 201) {
         return (
-        EmailConfirmationModel.fromJson(jsonDecode(response.body)),
-        null
+          EmailConfirmationModel.fromJson(jsonDecode(response.body)),
+          null
         );
       } else {
         return (null, jsonDecode(response.body)['message'].toString());
@@ -37,8 +39,9 @@ class EmailConfirmationRemoteDataSource {
     }
   }
 
-  static FutureOr<(ResendOtpModel?, String?)> resendOtp(
-      {required email,}) async {
+  static FutureOr<(ResendOtpModel?, String?)> resendOtp({
+    required email,
+  }) async {
     try {
       Response response = await post(
         Uri.parse('http://34.72.136.54:4067/api/v1/auth/resend-otp'),
@@ -47,10 +50,7 @@ class EmailConfirmationRemoteDataSource {
         },
       );
       if (response.statusCode == 201) {
-        return (
-        ResendOtpModel.fromJson(jsonDecode(response.body)),
-        null
-        );
+        return (ResendOtpModel.fromJson(jsonDecode(response.body)), null);
       } else {
         return (null, jsonDecode(response.body)['message'].toString());
       }

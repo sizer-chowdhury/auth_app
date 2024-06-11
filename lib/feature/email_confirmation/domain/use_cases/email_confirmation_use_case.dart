@@ -1,5 +1,6 @@
 import 'package:authentication_app/feature/email_confirmation/data/repositories/email_confirmation_repository_imp.dart';
 import 'package:authentication_app/feature/email_confirmation/domain/entities/email_confirmation_entity.dart';
+import 'package:authentication_app/feature/email_confirmation/domain/repositories/email_confirmation_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'email_confirmation_use_case.g.dart';
@@ -8,20 +9,20 @@ part 'email_confirmation_use_case.g.dart';
 EmailConfirmationUseCase emailConfirmationUseCase(
   EmailConfirmationUseCaseRef ref,
 ) {
-  final emailConfirmationImp = ref.read(emailConfirmationRepositoryImpProvider);
-  return EmailConfirmationUseCase(emailConfirmationImp: emailConfirmationImp);
+  final emailConfirmationRepo = ref.read(emailConfirmationRepositoryProvider);
+  return EmailConfirmationUseCase(emailConfirmationRepo: emailConfirmationRepo);
 }
 
 class EmailConfirmationUseCase {
-  final EmailConfirmationRepositoryImp emailConfirmationImp;
+  final EmailConfirmationRepository emailConfirmationRepo;
 
-  EmailConfirmationUseCase({required this.emailConfirmationImp});
+  EmailConfirmationUseCase({required this.emailConfirmationRepo});
 
   FutureOr<(EmailConfirmationEntity?, String?)> emailConfirmation({
     required email,
     required otp,
   }) async {
-    return await emailConfirmationImp.emailConfirmation(
+    return await emailConfirmationRepo.emailConfirmation(
       email: email,
       otp: otp,
     );

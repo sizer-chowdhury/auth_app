@@ -6,7 +6,7 @@ part of 'resend_otp_use_case.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$resendOtpUseCaseHash() => r'b759f5ce8aed560062bee0c2f856f84fe5f75445';
+String _$resendOtpUseCaseHash() => r'151de327a5df10f3cb8df0feb6c9a7166c65d627';
 
 /// See also [resendOtpUseCase].
 @ProviderFor(resendOtpUseCase)

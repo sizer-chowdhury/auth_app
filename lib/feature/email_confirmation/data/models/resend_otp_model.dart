@@ -3,8 +3,7 @@ import 'package:authentication_app/feature/email_confirmation/domain/entities/re
 class ResendOtpModel extends ResendOtpEntity {
   ResendOtpModel({required super.message});
 
-  static ResendOtpModel fromJson(Map<String, dynamic> json) {
-
+  factory ResendOtpModel.fromJson(Map<String, dynamic> json) {
     return ResendOtpModel(
       message: json['message'],
     );

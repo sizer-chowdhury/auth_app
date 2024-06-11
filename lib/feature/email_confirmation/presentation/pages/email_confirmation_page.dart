@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:authentication_app/core/navigation/routes/routes_name.dart';
 import 'package:authentication_app/core/widgets/title_underline.dart';
 import 'package:authentication_app/feature/email_confirmation/presentation/riverpod/email_confirmation_controller.dart';
 import 'package:authentication_app/feature/email_confirmation/presentation/riverpod/otp_controller.dart';
@@ -78,6 +79,7 @@ class _EmailConfirmationPageState extends ConsumerState<EmailConfirmationPage> {
 
     ref.listen(emailConfirmationControllerProvider, (_, next) {
       if (next.value?.$1 != null) {
+        String? emailController = widget.email.toString();
         showDialog(
           context: context,
           builder: (BuildContext context) {
@@ -88,9 +90,14 @@ class _EmailConfirmationPageState extends ConsumerState<EmailConfirmationPage> {
                 TextButton(
                   onPressed: () {
                     if (widget.pageSelector == "signUp") {
-                      context.go('/');
+                      context.go(Routes.login);
                     } else if (widget.pageSelector == "forgetPassword") {
-                      context.go('/resetPassword/${widget.email}');
+                      context.go(
+                        Routes.resetPassword,
+                        extra: {
+                          'email': emailController,
+                        },
+                      );
                     }
                     Navigator.of(context).pop();
                   },

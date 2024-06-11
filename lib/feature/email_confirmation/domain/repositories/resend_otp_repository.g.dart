@@ -1,28 +1,27 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'resend_otp_repository_imp.dart';
+part of 'resend_otp_repository.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$resendOtpRepositoryImpHash() =>
-    r'a25f07c881e415eb2da1812154157204a0986c5f';
+String _$resendOtpRepositoryHash() =>
+    r'320830cb3b01d0be34f34614b9858bb18a999cc3';
 
-/// See also [resendOtpRepositoryImp].
-@ProviderFor(resendOtpRepositoryImp)
-final resendOtpRepositoryImpProvider =
-    AutoDisposeProvider<ResendOtpRepositoryImp>.internal(
-  resendOtpRepositoryImp,
-  name: r'resendOtpRepositoryImpProvider',
+/// See also [resendOtpRepository].
+@ProviderFor(resendOtpRepository)
+final resendOtpRepositoryProvider =
+    AutoDisposeProvider<ResendOtpRepository>.internal(
+  resendOtpRepository,
+  name: r'resendOtpRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$resendOtpRepositoryImpHash,
+      : _$resendOtpRepositoryHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef ResendOtpRepositoryImpRef
-    = AutoDisposeProviderRef<ResendOtpRepositoryImp>;
+typedef ResendOtpRepositoryRef = AutoDisposeProviderRef<ResendOtpRepository>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

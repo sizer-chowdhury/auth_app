@@ -7,7 +7,7 @@ part of 'email_confirmation_use_case.dart';
 // **************************************************************************
 
 String _$emailConfirmationUseCaseHash() =>
-    r'344202237979d68d780ba7273dfcab6ccf02ee87';
+    r'9612397cb1a8e700343f16650fa76cb634f3c1ee';
 
 /// See also [emailConfirmationUseCase].
 @ProviderFor(emailConfirmationUseCase)
