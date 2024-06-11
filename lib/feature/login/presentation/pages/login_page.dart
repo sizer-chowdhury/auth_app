@@ -21,6 +21,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   TextEditingController password = TextEditingController();
   bool isButtonEnable = false;
   bool? enableCheckbox = false;
+  String errorPasswordVal = '';
 
   ({bool email, bool password}) enableButtonNotifier =
       (email: false, password: false);
@@ -187,8 +188,19 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                     style: Theme.of(context).textTheme.headlineLarge,
                   ),
                   PasswordField(
+                    onChanged: (value) {
+                      setState(() {
+                        if (value.length < 6) {
+                          errorPasswordVal = 'Password length must be'
+                              ' greater than or equal to 6';
+                        } else {
+                          errorPasswordVal = '';
+                        }
+                      });
+                    },
                     controller: password,
                     hintText: 'Enter your password',
+                    errorPasswordVal: errorPasswordVal,
                   ),
                 ],
               ),

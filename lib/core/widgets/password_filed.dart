@@ -5,11 +5,13 @@ class PasswordField extends StatefulWidget {
   final TextEditingController controller;
   final String hintText;
   final ValueChanged<String>? onChanged;
+  final String errorPasswordVal;
 
   const PasswordField({
     super.key,
     required this.controller,
     required this.hintText,
+    required this.errorPasswordVal,
     this.onChanged,
   });
 
@@ -27,6 +29,8 @@ class _PasswordFieldState extends State<PasswordField> {
       onChanged: widget.onChanged,
       obscureText: _isSecurePassword,
       decoration: InputDecoration(
+        errorText:
+            widget.errorPasswordVal.isNotEmpty ? widget.errorPasswordVal : null,
         hintText: widget.hintText,
         hintStyle: const TextStyle(
           fontFamily: FontFamily.circular,
