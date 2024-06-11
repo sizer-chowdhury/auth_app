@@ -1,26 +1,25 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'home_repository_imp.dart';
+part of 'home_repository.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$homeRepositoryImpHash() => r'1d4528ce325a8d8c658be4ca7bb23f692729a76e';
+String _$homeRepositoryHash() => r'6f51ef771e64f7f2e6524735a2a2ad6c12f54067';
 
-/// See also [homeRepositoryImp].
-@ProviderFor(homeRepositoryImp)
-final homeRepositoryImpProvider =
-    AutoDisposeProvider<HomeRepositoryImp>.internal(
-  homeRepositoryImp,
-  name: r'homeRepositoryImpProvider',
+/// See also [homeRepository].
+@ProviderFor(homeRepository)
+final homeRepositoryProvider = AutoDisposeProvider<HomeRepository>.internal(
+  homeRepository,
+  name: r'homeRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$homeRepositoryImpHash,
+      : _$homeRepositoryHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef HomeRepositoryImpRef = AutoDisposeProviderRef<HomeRepositoryImp>;
+typedef HomeRepositoryRef = AutoDisposeProviderRef<HomeRepository>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

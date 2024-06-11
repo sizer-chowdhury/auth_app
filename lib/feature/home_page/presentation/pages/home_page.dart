@@ -1,4 +1,5 @@
 import 'package:authentication_app/core/gen/assets.gen.dart';
+import 'package:authentication_app/core/navigation/routes/routes_name.dart';
 import 'package:authentication_app/core/widgets/title_underline.dart';
 import 'package:authentication_app/feature/home_page/presentation/riverpod/home_controller.dart';
 import 'package:authentication_app/feature/home_page/presentation/riverpod/logout_controller.dart';
@@ -39,7 +40,7 @@ class _HomePageState extends ConsumerState<HomePage> {
 
     ref.listen(logoutControllerProvider, (_, next) {
       if (next.value?.$1 != null) {
-        context.go('/');
+        context.go(Routes.login);
       } else if (next.value?.$2 != null) {
         showDialog(
           context: context,

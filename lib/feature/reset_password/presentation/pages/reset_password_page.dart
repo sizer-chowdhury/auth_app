@@ -134,7 +134,7 @@ class _ResetPasswordPageState extends ConsumerState<ResetPasswordPage> {
                     ),
                     PasswordField(
                       controller: password,
-                      hintText: '',
+                      hintText: '', errorPasswordVal: '',
                     ),
                     const SizedBox(height: 30),
                     Text(
@@ -143,7 +143,7 @@ class _ResetPasswordPageState extends ConsumerState<ResetPasswordPage> {
                     ),
                     PasswordField(
                       controller: confirmPassword,
-                      hintText: '',
+                      hintText: '', errorPasswordVal: '',
                     ),
                   ],
                 ),

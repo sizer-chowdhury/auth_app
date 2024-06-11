@@ -3,7 +3,15 @@ import 'dart:convert';
 import 'package:authentication_app/feature/home_page/data/models/home_model.dart';
 import 'package:authentication_app/feature/home_page/data/models/logout_model.dart';
 import 'package:http/http.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+part 'home_remote_data_source.g.dart';
+
+@riverpod
+HomeRemoteDataSource homeRemoteDataSource(HomeRemoteDataSourceRef ref) {
+  return HomeRemoteDataSource();
+}
 
 class HomeRemoteDataSource {
   static FutureOr<(HomeModel?, String?)> getProfileInfo() async {

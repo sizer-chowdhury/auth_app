@@ -185,7 +185,7 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                       ),
                       PasswordField(
                         controller: password,
-                        hintText: '',
+                        hintText: '', errorPasswordVal: '',
                       ),
                     ],
                   ),
