@@ -6,12 +6,11 @@ part of 'signup_repository.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$signUpRepositoryHash() => r'05b17b44af53ac3f16439a7338e340012320096d';
+String _$signUpRepositoryHash() => r'dd623ad83ad7fd4dadc57e8ac4769f71301e145a';
 
 /// See also [signUpRepository].
 @ProviderFor(signUpRepository)
-final signUpRepositoryProvider =
-    AutoDisposeProvider<SignUpRepositoryImp>.internal(
+final signUpRepositoryProvider = AutoDisposeProvider<SignUpRepository>.internal(
   signUpRepository,
   name: r'signUpRepositoryProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -21,6 +20,6 @@ final signUpRepositoryProvider =
   allTransitiveDependencies: null,
 );
 
-typedef SignUpRepositoryRef = AutoDisposeProviderRef<SignUpRepositoryImp>;
+typedef SignUpRepositoryRef = AutoDisposeProviderRef<SignUpRepository>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

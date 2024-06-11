@@ -5,7 +5,7 @@ class SignUpModel extends SignUpEntity {
     required super.message,
   });
 
-  static SignUpModel fromJson(Map<String, dynamic> json) {
+  factory SignUpModel.fromJson(Map<String, dynamic> json) {
     final String message = json['message'];
 
     return SignUpModel(

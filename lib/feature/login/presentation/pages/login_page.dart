@@ -262,7 +262,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                       context.push(Routes.forgetPassword);
                     },
                     child: Text(
-                      'Forget Passwordd?',
+                      'Forget Password?',
                       style: Theme.of(context).textTheme.headlineLarge,
                     ),
                   ),
@@ -291,7 +291,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                         backgroundColor: Colors.white,
                       )
                     : Text(
-                        'Loginn',
+                        'Login',
                         style: TextStyle(
                           color: (isButtonEnable)
                               ? Theme.of(context).colorScheme.surface
@@ -302,7 +302,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
             ),
             TextButton(
               onPressed: () {
-                GoRouter.of(context).pushNamed(Routes.signup);
+                context.go(Routes.signup);
               },
               child: Text(
                 "Don't have an account? Signup",
