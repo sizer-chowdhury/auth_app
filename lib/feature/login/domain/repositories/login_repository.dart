@@ -16,5 +16,6 @@ abstract class LoginRepository {
   FutureOr<LoginEntity?> signIn({
     required String email,
     required String password,
+    required bool isLogin,
   });
 }

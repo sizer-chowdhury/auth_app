@@ -14,6 +14,7 @@ class LoginRepositoryImp implements LoginRepository {
   FutureOr<LoginModel?> signIn({
     required String email,
     required String password,
+    required isLogin,
   }) async {
     LoginModel? loginModel = await loginRemoteDataSource.signIn(
       email: email,
@@ -24,6 +25,13 @@ class LoginRepositoryImp implements LoginRepository {
       value: loginModel!.getToken() ?? "",
     );
     loginLocalDataSource.setCacheData();
+    if (isLogin) {
+      LoginLocalDataSource loginLocalDataSource = LoginLocalDataSource(
+        key: 'loggedInEmail',
+        value: email,
+      );
+      loginLocalDataSource.setCacheData();
+    }
     return loginModel;
   }
 }

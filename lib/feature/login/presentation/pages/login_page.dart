@@ -21,6 +21,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   TextEditingController password = TextEditingController();
   bool isButtonEnable = false;
   bool? enableCheckbox = false;
+  bool? isLogin = false;
   String errorPasswordVal = '';
 
   ({bool email, bool password}) enableButtonNotifier =
@@ -220,6 +221,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                           onChanged: (newValue) {
                             setState(() {
                               enableCheckbox = newValue;
+                              isLogin = true;
                             });
                           },
                           shape: RoundedRectangleBorder(
@@ -278,6 +280,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                     ? () => ref.read(signInProvider.notifier).signIn(
                           email: email.text.toString(),
                           password: password.text.toString(),
+                          isLogin: isLogin,
                         )
                     : null,
                 style: ElevatedButton.styleFrom(
@@ -315,24 +318,4 @@ class _LoginPageState extends ConsumerState<LoginPage> {
       ),
     );
   }
-
-// Future<dynamic> _buildShowDialog(BuildContext context) {
-//   return showDialog(
-//     context: context,
-//     builder: (BuildContext context) {
-//       return AlertDialog(
-//         title: const Text('Error! Bad request.'),
-//         content: const Text('Invalid Email or Password'),
-//         actions: [
-//           TextButton(
-//             onPressed: () {
-//               Navigator.of(context).pop();
-//             },
-//             child: const Text('OK'),
-//           ),
-//         ],
-//       );
-//     },
-//   );
-// }
 }

@@ -11,12 +11,17 @@ class SignIn extends _$SignIn {
     return null;
   }
 
-  void signIn({required String email, required String password}) async {
+  void signIn({
+    required String email,
+    required String password,
+    required isLogin,
+  }) async {
     state = const AsyncLoading();
     state = await AsyncValue.guard(() async {
       return await ref.read(loginUseCaseProvider).signIn(
             email: email,
             password: password,
+        isLogin: isLogin,
           );
     });
   }

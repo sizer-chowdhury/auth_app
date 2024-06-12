@@ -18,10 +18,12 @@ class LoginUseCase {
   FutureOr<LoginEntity?> signIn({
     required String email,
     required String password,
+    required isLogin,
   }) async {
     LoginEntity? abc = await loginRepo.signIn(
       email: email,
       password: password,
+      isLogin: isLogin,
     );
     return abc;
   }
