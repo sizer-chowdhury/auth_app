@@ -231,7 +231,7 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                 ),
                 TextButton(
                   onPressed: () {
-                    GoRouter.of(context).pushNamed(Routes.login);
+                    context.go(Routes.login);
                   },
                   child: Text(
                     'Already have an account? Log In',
