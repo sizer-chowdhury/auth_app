@@ -52,7 +52,7 @@ class _ResetPasswordPageState extends ConsumerState<ResetPasswordPage> {
     final loginState = ref.watch(resetPasswordControllerProvider);
 
     ref.listen(resetPasswordControllerProvider, (_, next) {
-      if (next.value?.$1 != null) {
+      if (next.value?.$1 != null && next.value?.$2 == null) {
         showDialog(
           context: context,
           builder: (BuildContext context) {
@@ -63,7 +63,7 @@ class _ResetPasswordPageState extends ConsumerState<ResetPasswordPage> {
                 TextButton(
                   onPressed: () {
                     Navigator.of(context).pop();
-                    context.go(Routes.login);
+                    context.push(Routes.login);
                   },
                   child: const Text('OK'),
                 ),
@@ -71,13 +71,13 @@ class _ResetPasswordPageState extends ConsumerState<ResetPasswordPage> {
             );
           },
         );
-      } else if (next.value?.$2 != null) {
+      }else if (next.value?.$1 == null && next.value?.$2 != null) {
         showDialog(
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: const Text('Error!'),
-              content: Text('${next.value?.$2?.toString()}'),
+              title: const Text('Request Failed!'),
+              content: Text('${next.value?.$2}'),
               actions: [
                 TextButton(
                   onPressed: () {
@@ -145,7 +145,8 @@ class _ResetPasswordPageState extends ConsumerState<ResetPasswordPage> {
                     ),
                     PasswordField(
                       controller: confirmPassword,
-                      hintText: '', errorPasswordVal: '',
+                      hintText: '',
+                      errorPasswordVal: '',
                     ),
                   ],
                 ),
