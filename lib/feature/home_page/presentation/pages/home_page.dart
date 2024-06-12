@@ -40,7 +40,7 @@ class _HomePageState extends ConsumerState<HomePage> {
 
     ref.listen(logoutControllerProvider, (_, next) {
       if (next.value ?? false) {
-        context.push('/');
+        context.push(Routes.login);
       } else if (next.hasError && !next.isLoading) {
         print('logout failed');
       }
