@@ -98,7 +98,7 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: const Text('User already exist. Please Login'),
+              title: const Text('Error!'),
               content: Text('${next.value?.$2}'),
               actions: [
                 TextButton(

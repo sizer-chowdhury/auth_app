@@ -4,6 +4,7 @@ import 'package:authentication_app/core/widgets/title_underline.dart';
 import 'package:authentication_app/feature/email_confirmation/presentation/riverpod/email_confirmation_controller.dart';
 import 'package:authentication_app/feature/email_confirmation/presentation/riverpod/otp_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -212,6 +213,11 @@ class _EmailConfirmationPageState extends ConsumerState<EmailConfirmationPage> {
                       style: Theme.of(context).textTheme.headlineLarge,
                     ),
                     TextField(
+                      keyboardType: TextInputType.number,
+                      inputFormatters: [
+                        FilteringTextInputFormatter.digitsOnly,
+                        LengthLimitingTextInputFormatter(6),
+                      ],
                       decoration: const InputDecoration(
                         hintText: '',
                       ),

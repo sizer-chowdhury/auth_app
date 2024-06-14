@@ -56,7 +56,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     final loginState = ref.watch(signInProvider);
     ref.listen(signInProvider, (_, next) async {
       if (next.value != null) {
-        context.push(Routes.home);
+        context.go(Routes.home);
       } else if (next.hasError && !next.isLoading) {
         String message = next.error.toString();
         if (message.startsWith('Exception: ')) {
@@ -88,232 +88,235 @@ class _LoginPageState extends ConsumerState<LoginPage> {
     });
     return Scaffold(
       appBar: AppBar(),
-      body: SafeArea(
-        child: Column(
-          children: [
-            const SizedBox(height: 45),
-            Stack(
-              children: [
-                Text(
-                  'Log In to Authy',
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
-                const Underline(right: 77),
-              ],
-            ),
-            const SizedBox(height: 16),
-            Text(
-              'Welcome back! Sign in using your social',
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            Text(
-              'account or email to continue us',
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            const SizedBox(height: 30),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                LoginPageLogo(
-                  logo: Image(
-                    image: Assets.assets.images.facebook.provider(),
-                    height: 25,
-                    width: 25,
-                  ),
-                ),
-                const SizedBox(width: 22),
-                LoginPageLogo(
-                  logo: Image(
-                    image: Assets.assets.images.google.provider(),
-                    height: 25,
-                    width: 25,
-                  ),
-                ),
-                const SizedBox(width: 22),
-                LoginPageLogo(
-                  logo: Image(
-                    image: Assets.assets.images.apple.provider(),
-                    height: 25,
-                    width: 25,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 30),
-            Padding(
-              padding: const EdgeInsets.only(left: 30, right: 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Column(
+            children: [
+              const SizedBox(height: 45),
+              Stack(
                 children: [
-                  Expanded(
-                    child: Container(
-                      height: 1,
-                      color: const Color(0xFFCDD1D0),
+                  Text(
+                    'Log In to Authy',
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                  const Underline(right: 77),
+                ],
+              ),
+              const SizedBox(height: 16),
+              Text(
+                'Welcome back! Sign in using your social',
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              Text(
+                'account or email to continue us',
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              const SizedBox(height: 30),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  LoginPageLogo(
+                    logo: Image(
+                      image: Assets.assets.images.facebook.provider(),
+                      height: 25,
+                      width: 25,
                     ),
                   ),
-                  const Text(
-                    'OR',
-                    style: TextStyle(
-                      fontFamily: FontFamily.circular,
-                      color: Color(0xFFCDD1D0),
+                  const SizedBox(width: 22),
+                  LoginPageLogo(
+                    logo: Image(
+                      image: Assets.assets.images.google.provider(),
+                      height: 25,
+                      width: 25,
                     ),
                   ),
-                  Expanded(
-                    child: Container(
-                      height: 1,
-                      color: const Color(0xFFCDD1D0),
+                  const SizedBox(width: 22),
+                  LoginPageLogo(
+                    logo: Image(
+                      image: Assets.assets.images.apple.provider(),
+                      height: 25,
+                      width: 25,
                     ),
                   ),
                 ],
               ),
-            ),
-            const SizedBox(height: 30),
-            Padding(
-              padding: const EdgeInsets.only(left: 24, right: 24),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Email',
-                    style: Theme.of(context).textTheme.headlineLarge,
-                  ),
-                  TextField(
-                    decoration: const InputDecoration(
-                      hintText: 'Enter your email',
+              const SizedBox(height: 30),
+              Padding(
+                padding: const EdgeInsets.only(left: 30, right: 30),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Container(
+                        height: 1,
+                        color: const Color(0xFFCDD1D0),
+                      ),
                     ),
-                    controller: email,
-                  ),
-                  const SizedBox(height: 30),
-                  Text(
-                    'Password',
-                    style: Theme.of(context).textTheme.headlineLarge,
-                  ),
-                  PasswordField(
-                    onChanged: (value) {
-                      setState(() {
-                        if (value.length < 6) {
-                          errorPasswordVal = 'Password length must be'
-                              ' greater than or equal to 6';
-                        } else {
-                          errorPasswordVal = '';
-                        }
-                      });
-                    },
-                    controller: password,
-                    hintText: 'Enter your password',
-                    errorPasswordVal: errorPasswordVal,
-                  ),
-                ],
+                    const Text(
+                      'OR',
+                      style: TextStyle(
+                        fontFamily: FontFamily.circular,
+                        color: Color(0xFFCDD1D0),
+                      ),
+                    ),
+                    Expanded(
+                      child: Container(
+                        height: 1,
+                        color: const Color(0xFFCDD1D0),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            const SizedBox(height: 10),
-            Padding(
-              padding: const EdgeInsets.only(left: 24, right: 24),
-              child: Row(
-                children: [
-                  Row(
-                    children: [
-                      SizedBox(
-                        height: 10,
-                        width: 10,
-                        child: Checkbox(
-                          value: enableCheckbox,
-                          onChanged: (newValue) {
-                            setState(() {
-                              enableCheckbox = newValue;
-                              isLogin = true;
-                            });
-                          },
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(6),
-                          ),
-                          fillColor: (enableCheckbox!)
-                              ? WidgetStatePropertyAll(
-                                  Theme.of(context).colorScheme.primary,
-                                )
-                              : WidgetStatePropertyAll(
-                                  Theme.of(context)
-                                      .colorScheme
-                                      .secondary
-                                      .withOpacity(0.5),
-                                ),
-                          side: (enableCheckbox!)
-                              ? BorderSide(
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .primary
-                                      .withOpacity(0.1),
-                                  width: 2,
-                                )
-                              : BorderSide(
-                                  color: Theme.of(context).colorScheme.primary,
-                                  width: 2,
-                                ),
-                        ),
-                      ),
-                      const SizedBox(width: 7),
-                      Text(
-                        'Remember Me',
-                        style: Theme.of(context).textTheme.headlineLarge,
-                      ),
-                    ],
-                  ),
-                  const Spacer(),
-                  TextButton(
-                    onPressed: () {
-                      context.push(Routes.forgetPassword);
-                    },
-                    child: Text(
-                      'Forget Password?',
+              const SizedBox(height: 30),
+              Padding(
+                padding: const EdgeInsets.only(left: 24, right: 24),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Email',
                       style: Theme.of(context).textTheme.headlineLarge,
                     ),
-                  ),
-                ],
-              ),
-            ),
-            const Spacer(),
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.only(left: 24, right: 24),
-              child: ElevatedButton(
-                onPressed: (isButtonEnable)
-                    ? () => ref.read(signInProvider.notifier).signIn(
-                          email: email.text.toString(),
-                          password: password.text.toString(),
-                          isLogin: isLogin,
-                        )
-                    : null,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: (isButtonEnable)
-                      ? Theme.of(context).colorScheme.primary
-                      : Theme.of(context).colorScheme.secondary,
-                  minimumSize: const Size(double.infinity, 50),
-                ),
-                child: loginState.isLoading
-                    ? const CircularProgressIndicator(
-                        backgroundColor: Colors.white,
-                      )
-                    : Text(
-                        'Login',
-                        style: TextStyle(
-                          color: (isButtonEnable)
-                              ? Theme.of(context).colorScheme.surface
-                              : Theme.of(context).colorScheme.tertiary,
-                        ),
+                    TextField(
+                      decoration: const InputDecoration(
+                        hintText: 'Enter your email',
                       ),
+                      controller: email,
+                    ),
+                    const SizedBox(height: 30),
+                    Text(
+                      'Password',
+                      style: Theme.of(context).textTheme.headlineLarge,
+                    ),
+                    PasswordField(
+                      onChanged: (value) {
+                        setState(() {
+                          if (value.length < 6) {
+                            errorPasswordVal = 'Password length must be'
+                                ' greater than or equal to 6';
+                          } else {
+                            errorPasswordVal = '';
+                          }
+                        });
+                      },
+                      controller: password,
+                      hintText: 'Enter your password',
+                      errorPasswordVal: errorPasswordVal,
+                    ),
+                  ],
+                ),
               ),
-            ),
-            TextButton(
-              onPressed: () {
-                context.go(Routes.signup);
-              },
-              child: Text(
-                "Don't have an account? Signup",
-                style: Theme.of(context).textTheme.headlineLarge,
+              const SizedBox(height: 10),
+              Padding(
+                padding: const EdgeInsets.only(left: 24, right: 24),
+                child: Row(
+                  children: [
+                    Row(
+                      children: [
+                        SizedBox(
+                          height: 10,
+                          width: 18,
+                          child: Checkbox(
+                            value: enableCheckbox,
+                            onChanged: (newValue) {
+                              setState(() {
+                                enableCheckbox = newValue;
+                                isLogin = true;
+                              });
+                            },
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(6),
+                            ),
+                            fillColor: (enableCheckbox!)
+                                ? WidgetStatePropertyAll(
+                                    Theme.of(context).colorScheme.primary,
+                                  )
+                                : WidgetStatePropertyAll(
+                                    Theme.of(context)
+                                        .colorScheme
+                                        .secondary
+                                        .withOpacity(0.5),
+                                  ),
+                            side: (enableCheckbox!)
+                                ? BorderSide(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .primary
+                                        .withOpacity(0.1),
+                                    width: 2,
+                                  )
+                                : BorderSide(
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
+                                    width: 2,
+                                  ),
+                          ),
+                        ),
+                        const SizedBox(width: 7),
+                        Text(
+                          'Remember Me',
+                          style: Theme.of(context).textTheme.headlineLarge,
+                        ),
+                      ],
+                    ),
+                    const SizedBox(width: 92),
+                    TextButton(
+                      onPressed: () {
+                        context.push(Routes.forgetPassword);
+                      },
+                      child: Text(
+                        'Forget Password?',
+                        style: Theme.of(context).textTheme.headlineLarge,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            const SizedBox(height: 37),
-          ],
+              const SizedBox(height: 148),
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.only(left: 24, right: 24),
+                child: ElevatedButton(
+                  onPressed: (isButtonEnable)
+                      ? () => ref.read(signInProvider.notifier).signIn(
+                            email: email.text.toString(),
+                            password: password.text.toString(),
+                            isLogin: isLogin,
+                          )
+                      : null,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: (isButtonEnable)
+                        ? Theme.of(context).colorScheme.primary
+                        : Theme.of(context).colorScheme.secondary,
+                    minimumSize: const Size(double.infinity, 50),
+                  ),
+                  child: loginState.isLoading
+                      ? const CircularProgressIndicator(
+                          backgroundColor: Colors.white,
+                        )
+                      : Text(
+                          'Login',
+                          style: TextStyle(
+                            color: (isButtonEnable)
+                                ? Theme.of(context).colorScheme.surface
+                                : Theme.of(context).colorScheme.tertiary,
+                          ),
+                        ),
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  context.go(Routes.signup);
+                },
+                child: Text(
+                  "Don't have an account? Signup",
+                  style: Theme.of(context).textTheme.headlineLarge,
+                ),
+              ),
+              const SizedBox(height: 37),
+            ],
+          ),
         ),
       ),
     );
