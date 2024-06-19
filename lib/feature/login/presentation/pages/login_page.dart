@@ -20,7 +20,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
   bool isButtonEnable = false;
-  bool? enableCheckbox = false;
+  bool enableCheckbox = false;
   bool? isLogin = false;
   String errorPasswordVal = '';
 
@@ -221,14 +221,14 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                             value: enableCheckbox,
                             onChanged: (newValue) {
                               setState(() {
-                                enableCheckbox = newValue;
+                                enableCheckbox = newValue ?? false;
                                 isLogin = true;
                               });
                             },
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(6),
                             ),
-                            fillColor: (enableCheckbox!)
+                            fillColor: (enableCheckbox)
                                 ? WidgetStatePropertyAll(
                                     Theme.of(context).colorScheme.primary,
                                   )
@@ -238,7 +238,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                                         .secondary
                                         .withOpacity(0.5),
                                   ),
-                            side: (enableCheckbox!)
+                            side: (enableCheckbox)
                                 ? BorderSide(
                                     color: Theme.of(context)
                                         .colorScheme
@@ -254,13 +254,24 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                           ),
                         ),
                         const SizedBox(width: 7),
-                        Text(
-                          'Remember Me',
-                          style: Theme.of(context).textTheme.headlineLarge,
+                        GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              enableCheckbox = !enableCheckbox;
+                            });
+                          },
+                          child: Text(
+                            'Remember Me',
+                            style: Theme.of(context).textTheme.headlineLarge,
+                          ),
                         ),
+                        // Text(
+                        //   'Remember Me',
+                        //   style: Theme.of(context).textTheme.headlineLarge,
+                        // ),
                       ],
                     ),
-                    const SizedBox(width: 92),
+                    const Spacer(),
                     TextButton(
                       onPressed: () {
                         context.push(Routes.forgetPassword);
