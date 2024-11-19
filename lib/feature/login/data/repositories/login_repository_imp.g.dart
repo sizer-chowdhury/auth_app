@@ -7,9 +7,11 @@ part of 'login_repository_imp.dart';
 // **************************************************************************
 
 String _$loginRepositoryImpHash() =>
-    r'85aaabed2de34e7a2729dbdf6e2967a8ff1b2313';
+    r'1a71ecd5cae448520465d3d70d07fe718c4ac489';
 
-/// See also [loginRepositoryImp].
+/// The implementation of the LoginRepository using Riverpod for dependency injection.
+///
+/// Copied from [loginRepositoryImp].
 @ProviderFor(loginRepositoryImp)
 final loginRepositoryImpProvider =
     AutoDisposeProvider<LoginRepositoryImp>.internal(
